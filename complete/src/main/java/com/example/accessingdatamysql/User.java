@@ -6,8 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 
 @Entity // This tells Hibernate to make a table out of this class
+@Table(name = "users") // Renames the table to 'users' to avoid conflicts with Postgresql reserved word USER
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
