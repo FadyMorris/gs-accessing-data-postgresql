@@ -5,22 +5,25 @@
 :toc:
 :icons: font
 :source-highlighter: prettify
-:project_id: gs-accessing-data-mysql
+:project_id: gs-accessing-data-postgresql
 :java_version: 17
 :build_system: gradle
-:build_name: accessing-data-mysql
+:build_name: accessing-data-postgresql
 :build_version: 0.0.1-SNAPSHOT
-:network_container: guide-mysql
+:network_container: guide-postgresql
+
+
+This repository was forked from https://github.com/spring-guides/gs-accessing-data-mysql[Spring Guides - Accessing data with MySQL] repository. The code was modified to use PostgreSQL instead of MySQL. The database configuration is in  `.env` file.
 
 This guide walks you through the process of creating a Spring application connected to a
-MySQL Database (as opposed to an in-memory, embedded database, which most of the other
+PostgreSQL Database (as opposed to an in-memory, embedded database, which most of the other
 guides and many sample applications use). It uses Spring Data JPA to access the database,
 but this is only one of many possible choices (for example, you could use plain Spring
 JDBC).
 
 == What You Will Build
 
-You will create a MySQL database, build a Spring application, and connect it to the newly
+You will create a PostgreSQL database, build a Spring application, and connect it to the newly
 created database.
 
 NOTE: MySQL is licensed with the GPL, so any program binary that you distribute with it
@@ -30,7 +33,7 @@ https://www.gnu.org/licenses/gpl.html[GNU General Public License].
 // required variables: {java_version}, {project_id}
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/main/guide_introduction.adoc[]
 
-== Setting up the MySQL Database
+== Setting up the PostgreSQL Database
 
 Before you can build your application, you first need to configure a MySQL database.
 //required variables: none
@@ -39,14 +42,14 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 [[scratch]]
 == Starting with Spring Initializr
 
-You can use this https://start.spring.io/#!type=maven-project&language=java&packaging=jar&groupId=com.example&artifactId=accessing-data-mysql&name=accessing-data-mysql&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.accessingdatamysql&dependencies=web,data-jpa,mysql,docker-compose,testcontainers[pre-initialized project] and click Generate to download a ZIP file. This project is configured to fit the examples in this tutorial.
+You can use this https://start.spring.io/#!type=maven-project&language=java&packaging=jar&groupId=com.example&artifactId=accessing-data-mysql&name=accessing-data-mysql&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.accessingdatamysql&dependencies=web,data-jpa,mysql,docker-compose,testcontainers,postgresql[pre-initialized project] and click Generate to download a ZIP file. This project is configured to fit the examples in this tutorial.
 
 To manually initialize the project:
 
 . Navigate to https://start.spring.io.
 This service pulls in all the dependencies you need for an application and does most of the setup for you.
 . Choose either Gradle or Maven and the language you want to use. This guide assumes that you chose Java.
-. Click *Dependencies* and select *Spring Web*, *Spring Data JPA*, *MySQL Driver*, *Docker Compose Support*, and *Testcontainers*.
+. Click *Dependencies* and select *Spring Web*, *Spring Data JPA*, *MySQL Driver*, *Docker Compose Support*, *Testcontainers*, and *PostgreSQL Driver*.
 . Click *Generate*.
 . Download the resulting ZIP file, which is an archive of a web application that is configured with your choices.
 
@@ -200,7 +203,7 @@ include::complete/src/main/resources/application.properties[]
 ----
 ====
 
-Before running the application, you also need to start the MySQL container as Spring Boot's docker compose no longer does that for you:
+Before running the application, you also need to start the PostgreSQL container as Spring Boot's docker compose no longer does that for you:
 
 [source, bash]
 ----
@@ -211,7 +214,7 @@ You can then run the curl commands as described in <<_test_the_application>>.
 
 == Make Some Security Changes
 
-When you are on a production environment, you may be exposed to SQL injection attacks. A
+For MySQL, When you are on a production environment, you may be exposed to SQL injection attacks. A
 hacker may inject `DROP TABLE` or any other destructive SQL commands. So, as a security
 practice, you should make some changes to your database before you expose the application
 to your users.
@@ -253,7 +256,7 @@ again. Better still, use a dedicated migration tool, such as Flyway or Liquibase
 
 == Summary
 
-Congratulations! You have just developed a Spring application that is bound to a MySQL
+Congratulations! You have just developed a Spring application that is bound to a PostgreSQL
 database and is ready for production!
 
 == See Also
